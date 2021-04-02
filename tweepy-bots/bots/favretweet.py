@@ -23,12 +23,8 @@ class FavRetweetListener(tweepy.StreamListener):
         if not tweet.favorited:
             # Mark it as Liked, since we have not done it yet
             try:
-                print("---------------------------------- TYPE ----------------------------------")
-                print(type(tweet))
-                print("---------------------------------- TWEET ----------------------------------")
-                print(tweet)
-                print("---------------------------------- TWEET._JSON ----------------------------------")
-                print(tweet._json)
+                with open('tweetExample.json', 'w') as jsonfile:
+                    json.dump(tweet._json, jsonfile)
                 tweet.favorite()
             except Exception as e:
                 logger.error("Error on fav", exc_info=True)
